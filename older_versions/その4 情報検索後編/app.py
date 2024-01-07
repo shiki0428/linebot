@@ -182,7 +182,7 @@ def handle_message(event):
 
 	## 返信
 	if len(songtitle) == 0:  ## 候補なし
-		reply = 'NOT FOUND:\nPlease try again with a different words.'
+		reply = 'NOT FOUND:\nPlease try again with different words.'
 		reply = [TextMessage(text=reply)]
 	elif len(songtitle) == 1:  ## 候補1曲のみ
 		reply = 'https://www.youtube.com/watch?v=' + DATA.loc[songtitle[0], 'official_youtube']
