@@ -25,3 +25,10 @@
 |`song`|song title (**NOT DISTINCT**)|
 |`album`|album title that contains the song|
 |`track`|track number in the album|
+
+> `album_year.csv`
+
+|column|description|
+|-|-|
+|`album`|album title|
+|`year`|year released|
