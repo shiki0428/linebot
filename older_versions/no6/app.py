@@ -44,7 +44,7 @@ def callback():
 
 ##################################################
 
-## When someone follow the bot
+## When someone follows the bot
 @handler.add(FollowEvent)
 def handle_follow(event):
 	## API instantiation
@@ -65,8 +65,8 @@ def handle_message(event):
 	received_message = event.message.text
 
 	## MODE : LYRICS MODE
-	if re.match(r'(歌詞|lyrics?)', received_message):  
-		query = re.sub(r'^(歌詞|lyrics?)', '', received_message)  ## remove prefix
+	if re.match(r'(歌詞|lyrics?)', received_message, flags=re.I):  ## ignore case
+		query = re.sub(r'^(歌詞|lyrics?)', '', received_message, flags=re.I)  ## remove prefix
 		messages = get_lyrics(query)
 	## MODE : OFFICIAL YOUTUBE
 	else:

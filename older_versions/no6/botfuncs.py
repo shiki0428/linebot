@@ -39,7 +39,7 @@ def get_lyrics(text:str) -> list:
 	if len(songtitles) == 0:  ## no candidate
 		reply = 'NOT FOUND:\nPlease try again with different words.'
 		messages = [TextMessage(text=reply)]
-	elif len(songtitles) == 1:  ## only one candidate -> return URL
+	elif len(songtitles) == 1:  ## only one candidate -> return lyrics
 		reply = DATA.loc[songtitles[0], 'lyrics'].replace('<br>', '\n')  ## original data uses <br> instead of \n
 		reply = f'{songtitles[0]} :\n\n' + reply  ## add song title as header
 		messages = [TextMessage(text=reply)]
