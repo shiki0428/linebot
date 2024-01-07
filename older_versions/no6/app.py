@@ -65,8 +65,8 @@ def handle_message(event):
 	received_message = event.message.text
 
 	## MODE : LYRICS MODE
-	if re.match(r'(歌詞|lyrics?)', received_message, flags=re.I):  ## ignore case
-		query = re.sub(r'^(歌詞|lyrics?)', '', received_message, flags=re.I)  ## remove prefix
+	if re.match(r'(歌詞|lyrics?)', received_message):  
+		query = re.sub(r'^(歌詞|lyrics?)', '', received_message)  ## remove prefix
 		messages = get_lyrics(query)
 	## MODE : OFFICIAL YOUTUBE
 	else:
