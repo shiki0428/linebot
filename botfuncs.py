@@ -15,8 +15,8 @@ DATA['lyrics'] = DATA['lyrics'].apply(lambda x: x.replace('<br>', '\n'))
 SONGS = DATA.index  ## list of song title
 
 
-## CLASS FOR GET INFORMATION FROM SONG TITLE
-class _GetFromSongTitle:
+## CLASS FOR GET INFORMATION BY SONG TITLE
+class _GetBySongTitle:
 	def __init__(self, col_name, mode_prefix='', decorate=lambda x: x):
 		self.data = DATA[col_name] ## pd.Series : index - song title
 		self.prefix = mode_prefix
@@ -28,8 +28,8 @@ class _GetFromSongTitle:
 			reply = 'NOT FOUND:\nPlease try again with different words.'
 			messages = [TextMessage(text=reply)]
 		elif len(songtitles) == 1:  ## only one candidate -> return URL
-			reply = self.data[songtitles[0]]
-			reply = self.decorate(reply, songtitles[0])  
+			reterieved = self.data[songtitles[0]]  ## retrieve data 
+			reply = self.decorate(reterieved, songtitles[0])  
 			messages = [TextMessage(text=reply)]
 		else:
 			quickreply = QuickReply(items=[])  ## instantiation 
@@ -43,16 +43,16 @@ class _GetFromSongTitle:
 			messages = [TextMessage(text='candidate songs:', quickReply=quickreply)]
 		return messages
 
-_GetYoutube = _GetFromSongTitle(
+_GetYoutube = _GetBySongTitle(
 	col_name='official_youtube',
 	mode_prefix='',
-	decorate=lambda youtubeID: 'https://www.youtube.com/watch?v=' + youtubeID)
+	decorate=lambda youtubeID, songtitle: 'https://www.youtube.com/watch?v=' + youtubeID)  ## add YouTube URL
 get_official_youtube = _GetYoutube.get
 
-_GetLyrics = _GetFromSongTitle(
+_GetLyrics = _GetBySongTitle(
 	col_name='lyrics',
 	mode_prefix='lyrics ',
-	decorate=lambda reply, songtitle: f'{songtitle} :\n\n' + reply)
+	decorate=lambda lyrics, songtitle: f'{songtitle} :\n\n' + lyrics)  ## add song title as header
 get_lyrics = _GetLyrics.get
 
 ##################################################

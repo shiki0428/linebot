@@ -29,7 +29,7 @@ app = Flask(__name__)
 configuration = Configuration(access_token=CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(CHANNEL_SECRET)
 
-## callback function (copy & paste)
+## callback function (copied from official GitHub)
 @app.route("/callback", methods=['POST'])
 def callback():
 	signature = request.headers['X-Line-Signature']
@@ -50,7 +50,7 @@ def handle_follow(event):
 	## API instantiation
 	with ApiClient(configuration) as api_client:
 		line_bot_api = MessagingApi(api_client)
-	## reply
+	## send reply message
 	line_bot_api.reply_message(ReplyMessageRequest(
 		replyToken=event.reply_token,
 		messages=[TextMessage(text='Thank You!')]
