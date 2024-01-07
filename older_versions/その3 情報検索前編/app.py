@@ -83,10 +83,10 @@ def search_song_title(query:str) -> str:
 		if query_lower in song_lower or query_no_punct in song_no_punct:
 			partial_match.append(song)
 
-		### 3. TOKEN MATCH ###
-		song_intersection = set(SONGS)
-		for token in query_tokens:
-			song_intersection &= INVERTED_INDEX_SONGTITLE.get(token, set())
+	### 3. TOKEN MATCH ###
+	song_intersection = set(SONGS)
+	for token in query_tokens:
+		song_intersection &= INVERTED_INDEX_SONGTITLE.get(token, set())
 
 	if len(partial_match) == 1:
 		return partial_match[0]
