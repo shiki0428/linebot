@@ -64,6 +64,10 @@ def create_flex_lyrics(lyrics, songtitle):
 	## GET SONG INFO
 	album = DATA.loc[songtitle, 'album']
 	year = ALBUM_YEAR[album]
+	if year >= 1967:
+		color = '#0367D3' ## blue
+	else:
+		color = '#CB444A' ## red
 
 	## PREPARE BUBBLE CONTAINER
 	bubble_container = FlexBubble(size='giga')
@@ -75,7 +79,7 @@ def create_flex_lyrics(lyrics, songtitle):
 		layout='vertical',
 		contents=[song_title_text, song_album_text],
 		spacing='sm',
-		backgroundColor='#0367D3',
+		backgroundColor=color,
 		paddingAll='xxl'
 	)
 	bubble_container.header = header_box
