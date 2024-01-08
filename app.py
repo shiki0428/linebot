@@ -65,6 +65,13 @@ def handle_message(event):
 	## get the text content
 	received_message = event.message.text.strip() ## remove spaces
 
+	## send reply message
+	line_bot_api.reply_message(ReplyMessageRequest(
+		replyToken=event.reply_token,
+		messages="こんにちは"
+	))
+
+
 	## MODE : LYRICS
 	if re.match(r'(歌詞|lyrics?)', received_message, flags=re.I):  ## ignore case
 		query = re.sub(r'^(歌詞|lyrics?)', '', received_message, flags=re.I)  ## remove prefix
