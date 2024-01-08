@@ -68,7 +68,7 @@ def handle_message(event):
 	## send reply message
 	line_bot_api.reply_message(ReplyMessageRequest(
 		replyToken=event.reply_token,
-		messages="こんにちは"
+		messages=["こんにちは"]
 	))
 
 
