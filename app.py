@@ -11,9 +11,6 @@ from linebot.v3.webhooks import (
 )
 import os, re
 
-from botfuncs import *
-from botfuncs_quiz import *
-
 ## load `.env` file
 ## if test bot, use `load_dotenv('test.env')` instead 
 from dotenv import load_dotenv
@@ -82,7 +79,7 @@ def handle_postback(event):
 	postback_data = event.postback.data
 
 	# get replay message - Postback or Message
-	messages = create_postback_reply(postback=postback_data)
+	messages=[TextMessage(text='Thank You!'),TextMessage(text='Thank You2!')]
 
 	## send reply message
 	line_bot_api.reply_message(ReplyMessageRequest(
