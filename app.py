@@ -66,44 +66,10 @@ def handle_message(event):
 	received_message = event.message.text.strip() ## remove spaces
 
 	## send reply message
+	print(event)
 	line_bot_api.reply_message(ReplyMessageRequest(
 		replyToken=event.reply_token,
-		messages=[TextMessage(text='Thank You!')]
-	))
-
-
-	## MODE : LYRICS
-	if re.match(r'(歌詞|lyrics?)', received_message, flags=re.I):  ## ignore case
-		query = re.sub(r'^(歌詞|lyrics?)', '', received_message, flags=re.I)  ## remove prefix
-		messages = get_lyrics(query)
-	## MODE : HARMONY
-	elif re.match(r'(harmony|chorus|コーラス)', received_message, flags=re.I):  ## ignore case
-		query = re.sub(r'^(harmony|chorus|コーラス)', '', received_message, flags=re.I)  ## remove prefix
-		messages = get_harmony(query)
-	## MODE : BASSTAB
-	elif re.match(r'(bass\s?tab|ベースタブ|ベースtab)', received_message, flags=re.I):  ## ignore case
-		query = re.sub(r'^(bass\s?tab|ベースタブ|ベースtab)', '', received_message, flags=re.I)  ## remove prefix
-		messages = get_basstab(query)
-	## MODE : BASS
-	elif re.match(r'(bass|ベース)', received_message, flags=re.I):  ## ignore case
-		query = re.sub(r'^(bass|ベース)', '', received_message, flags=re.I)  ## remove prefix
-		messages = get_bass(query)
-	## MODE : INFO
-	elif re.match(r'(info|データ)', received_message, flags=re.I):  ## ignore case
-		query = re.sub(r'^(info|データ)', '', received_message, flags=re.I)  ## remove prefix
-		messages = get_info(query)
-	## MODE : LYRICS QUIZ
-	elif re.match(r'(歌詞\s*)?(クイズ|quiz)', received_message, flags=re.I):  ## ignore case
-		postback = 'question=0&score=0&answer=NONE'
-		messages = create_postback_reply(postback=postback)
-	## MODE : OFFICIAL YOUTUBE
-	else:
-		messages = get_official_youtube(received_message)
-
-	## send reply message
-	line_bot_api.reply_message(ReplyMessageRequest(
-		replyToken=event.reply_token,
-		messages=messages
+		messages=[TextMessage(text='Thank You!'),TextMessage(text='Thank You2!')]
 	))
 
 ## When received POSTBACK EVENT - lyrics quiz
